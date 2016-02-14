@@ -14,6 +14,7 @@
 		A3B1F1961C70396E00F3555F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3B1F1941C70396E00F3555F /* LaunchScreen.storyboard */; };
 		A3B1F1A11C70396E00F3555F /* LeonGitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B1F1A01C70396E00F3555F /* LeonGitTests.swift */; };
 		A3B1F1AC1C70396E00F3555F /* LeonGitUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B1F1AB1C70396E00F3555F /* LeonGitUITests.swift */; };
+		A3B311271C703BF0004EC4BD /* vid.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = A3B311261C703BF0004EC4BD /* vid.mp4 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		A3B1F1A71C70396E00F3555F /* LeonGitUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LeonGitUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3B1F1AB1C70396E00F3555F /* LeonGitUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeonGitUITests.swift; sourceTree = "<group>"; };
 		A3B1F1AD1C70396E00F3555F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A3B311261C703BF0004EC4BD /* vid.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = vid.mp4; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				A3B1F18B1C70396E00F3555F /* AppDelegate.swift */,
 				A3B1F18D1C70396E00F3555F /* ViewController.swift */,
 				A3B1F18F1C70396E00F3555F /* Main.storyboard */,
+				A3B311261C703BF0004EC4BD /* vid.mp4 */,
 				A3B1F1921C70396E00F3555F /* Assets.xcassets */,
 				A3B1F1941C70396E00F3555F /* LaunchScreen.storyboard */,
 				A3B1F1971C70396E00F3555F /* Info.plist */,
@@ -230,6 +233,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3B1F1961C70396E00F3555F /* LaunchScreen.storyboard in Resources */,
+				A3B311271C703BF0004EC4BD /* vid.mp4 in Resources */,
 				A3B1F1931C70396E00F3555F /* Assets.xcassets in Resources */,
 				A3B1F1911C70396E00F3555F /* Main.storyboard in Resources */,
 			);
@@ -484,6 +488,7 @@
 				A3B1F1B21C70396E00F3555F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A3B1F1B31C70396E00F3555F /* Build configuration list for PBXNativeTarget "LeonGitTests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +497,7 @@
 				A3B1F1B51C70396E00F3555F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A3B1F1B61C70396E00F3555F /* Build configuration list for PBXNativeTarget "LeonGitUITests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +506,7 @@
 				A3B1F1B81C70396E00F3555F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
