@@ -15,6 +15,10 @@
 		A3B1F1A11C70396E00F3555F /* LeonGitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B1F1A01C70396E00F3555F /* LeonGitTests.swift */; };
 		A3B1F1AC1C70396E00F3555F /* LeonGitUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B1F1AB1C70396E00F3555F /* LeonGitUITests.swift */; };
 		A3B311271C703BF0004EC4BD /* vid.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = A3B311261C703BF0004EC4BD /* vid.mp4 */; };
+		F7AAFC811C7047210026C000 /* FilterCompositor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AAFC801C7047210026C000 /* FilterCompositor.swift */; };
+		F7AAFC831C70481E0026C000 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7AAFC821C70481E0026C000 /* AVFoundation.framework */; };
+		F7AAFC851C7048260026C000 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7AAFC841C7048260026C000 /* CoreImage.framework */; };
+		F7AAFC881C70A94E0026C000 /* LGInstruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AAFC871C70A94E0026C000 /* LGInstruction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,10 @@
 		A3B1F1AB1C70396E00F3555F /* LeonGitUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeonGitUITests.swift; sourceTree = "<group>"; };
 		A3B1F1AD1C70396E00F3555F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A3B311261C703BF0004EC4BD /* vid.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = vid.mp4; sourceTree = "<group>"; };
+		F7AAFC801C7047210026C000 /* FilterCompositor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterCompositor.swift; sourceTree = "<group>"; };
+		F7AAFC821C70481E0026C000 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		F7AAFC841C7048260026C000 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		F7AAFC871C70A94E0026C000 /* LGInstruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LGInstruction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +64,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7AAFC851C7048260026C000 /* CoreImage.framework in Frameworks */,
+				F7AAFC831C70481E0026C000 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +89,7 @@
 		A3B1F17F1C70396E00F3555F = {
 			isa = PBXGroup;
 			children = (
+				F7AAFC861C70482A0026C000 /* Frameworks */,
 				A3B1F18A1C70396E00F3555F /* LeonGit */,
 				A3B1F19F1C70396E00F3555F /* LeonGitTests */,
 				A3B1F1AA1C70396E00F3555F /* LeonGitUITests */,
@@ -99,8 +110,10 @@
 		A3B1F18A1C70396E00F3555F /* LeonGit */ = {
 			isa = PBXGroup;
 			children = (
+				F7AAFC801C7047210026C000 /* FilterCompositor.swift */,
 				A3B1F18B1C70396E00F3555F /* AppDelegate.swift */,
 				A3B1F18D1C70396E00F3555F /* ViewController.swift */,
+				F7AAFC871C70A94E0026C000 /* LGInstruction.swift */,
 				A3B1F18F1C70396E00F3555F /* Main.storyboard */,
 				A3B311261C703BF0004EC4BD /* vid.mp4 */,
 				A3B1F1921C70396E00F3555F /* Assets.xcassets */,
@@ -126,6 +139,15 @@
 				A3B1F1AD1C70396E00F3555F /* Info.plist */,
 			);
 			path = LeonGitUITests;
+			sourceTree = "<group>";
+		};
+		F7AAFC861C70482A0026C000 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F7AAFC841C7048260026C000 /* CoreImage.framework */,
+				F7AAFC821C70481E0026C000 /* AVFoundation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,7 +283,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3B1F18E1C70396E00F3555F /* ViewController.swift in Sources */,
+				F7AAFC811C7047210026C000 /* FilterCompositor.swift in Sources */,
 				A3B1F18C1C70396E00F3555F /* AppDelegate.swift in Sources */,
+				F7AAFC881C70A94E0026C000 /* LGInstruction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

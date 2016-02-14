@@ -13,6 +13,8 @@ import AssetsLibrary
 class ViewController: UIViewController {
     var documentsURL : NSURL!
     var player : AVPlayer!
+    var compositor : FilterCompositor?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("hey")
@@ -37,26 +39,52 @@ class ViewController: UIViewController {
         }
         
         
-        
-        
-        
         let aLayer = CALayer()
         aLayer.contents = UIImage(named: "check.png")?.CGImage
         aLayer.frame = CGRectMake(50, 50, 160, 160)
         
         let path = NSBundle.mainBundle().pathForResource("vid", ofType:"mp4")
         let file = NSURL(fileURLWithPath: path!)
-        let playerItem = AVPlayerItem(asset: AVAsset(URL: file))
+        let asset = AVURLAsset(URL: file)
+        let originalVideoTrack = asset.tracksWithMediaType(AVMediaTypeVideo)[0]
+        let composition = AVMutableComposition()
+        let videoTrack = composition.addMutableTrackWithMediaType(AVMediaTypeVideo, preferredTrackID: 1)
+        let timeRange = originalVideoTrack.timeRange
+        do {
+            try videoTrack.insertTimeRange(timeRange, ofTrack: originalVideoTrack, atTime: kCMTimeZero)
+        } catch {
+            
+        }
+        
+        let playerItem = AVPlayerItem(asset: composition)
+        let videoComposition = AVMutableVideoComposition()
+        videoComposition.customVideoCompositorClass = FilterCompositor.self
+        videoComposition.frameDuration = CMTimeMake(1, 30)
+        videoComposition.renderSize = originalVideoTrack.naturalSize
+        
+        let layerInstruction = AVMutableVideoCompositionLayerInstruction(assetTrack: videoTrack)
+        let videoInstruction = AVMutableVideoCompositionInstruction()
+        videoInstruction.timeRange = timeRange
+        videoInstruction.layerInstructions = [layerInstruction]
+        videoComposition.instructions = [videoInstruction]
+        
+        playerItem.videoComposition = videoComposition
         
         //Set Player
-        player = AVPlayer(URL: file)
+        player = AVPlayer(playerItem: playerItem)
         let playerLayer = AVPlayerLayer(player: player)
         playerLayer.frame = CGRectMake(0, 0, 320, 320)
+        
+        playerLayer.borderWidth = 1.0
+        playerLayer.borderColor = UIColor.redColor().CGColor
+        
         self.view.layer.addSublayer(playerLayer)
         let synchronizedLayer = AVSynchronizedLayer(playerItem: playerItem)
         synchronizedLayer.frame = playerLayer.frame
         playerLayer.addSublayer(synchronizedLayer)
         
+        compositor = playerItem.customVideoCompositor as? FilterCompositor
+        NSLog("\(compositor)")
         //Add Image
         
         synchronizedLayer.addSublayer(aLayer)
@@ -77,7 +105,17 @@ class ViewController: UIViewController {
         self.player.play()
     }
     
+    @IBAction func filterOne(sender: AnyObject) {
+        if compositor != nil {
+            compositor!.filterIndex = 0
+        }
+    }
     
+    @IBAction func filterTwo(sender: AnyObject) {
+        if compositor != nil {
+            compositor!.filterIndex = 1
+        }
+    }
     //   let videoComposition = AVMutableVideoComposition(asset: <#T##AVAsset#>, applyingCIFiltersWithHandler: <#T##(AVAsynchronousCIImageFilteringRequest) -> Void#>)
     func exportVideo()
     {
@@ -88,7 +126,7 @@ class ViewController: UIViewController {
         let path = NSBundle.mainBundle().pathForResource("vid", ofType:"mp4")
         let file = NSURL(fileURLWithPath: path!)
         let asset = AVAsset(URL: file)
-        var clipVideoTrack = asset.tracksWithMediaType(AVMediaTypeVideo)[0] as! AVAssetTrack
+        let clipVideoTrack = asset.tracksWithMediaType(AVMediaTypeVideo)[0]
         let videoSize = clipVideoTrack.naturalSize
         let videoComposition = AVMutableVideoComposition(propertiesOfAsset: asset)
         
