@@ -126,9 +126,25 @@ class ViewController: UIViewController {
         let path = NSBundle.mainBundle().pathForResource("vid", ofType:"mp4")
         let file = NSURL(fileURLWithPath: path!)
         let asset = AVAsset(URL: file)
-        let clipVideoTrack = asset.tracksWithMediaType(AVMediaTypeVideo)[0]
-        let videoSize = clipVideoTrack.naturalSize
+        
+        let originalVideoTrack = asset.tracksWithMediaType(AVMediaTypeVideo)[0]
+        // setup an composition
+        let composition = AVMutableComposition()
+        let videoTrack = composition.addMutableTrackWithMediaType(AVMediaTypeVideo, preferredTrackID: 1)
+        let timeRange = originalVideoTrack.timeRange
+        do {
+            try videoTrack.insertTimeRange(timeRange, ofTrack: originalVideoTrack, atTime: kCMTimeZero)
+        } catch {
+            
+        }
+
+        
+        //
+        let videoSize = originalVideoTrack.naturalSize
         let videoComposition = AVMutableVideoComposition(propertiesOfAsset: asset)
+        // ...
+        videoComposition.frameDuration = CMTimeMake(1, 30)
+        videoComposition.renderSize = originalVideoTrack.naturalSize
         
         
         let parentLayer = CALayer()
@@ -145,7 +161,16 @@ class ViewController: UIViewController {
         
         videoComposition.animationTool = AVVideoCompositionCoreAnimationTool(postProcessingAsVideoLayer: videoLayer, inLayer: parentLayer)
         
-        let exportSession = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetHighestQuality)
+        // add filter
+        videoComposition.customVideoCompositorClass = FilterCompositor.self
+        let layerInstruction = AVMutableVideoCompositionLayerInstruction(assetTrack: videoTrack)
+        let videoInstruction = AVMutableVideoCompositionInstruction()
+        videoInstruction.timeRange = timeRange
+        videoInstruction.layerInstructions = [layerInstruction]
+        videoComposition.instructions = [videoInstruction]
+        
+//        let exportSession = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetHighestQuality)
+        let exportSession = AVAssetExportSession(asset: composition, presetName: AVAssetExportPresetHighestQuality)
         exportSession!.videoComposition = videoComposition
         exportSession!.outputFileType = AVFileTypeQuickTimeMovie
         exportSession!.outputURL =  documentsURL
