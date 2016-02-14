@@ -20,7 +20,8 @@ class ViewController: UIViewController {
         print("hey")
         let paths = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
         documentsURL = paths[0]
-        documentsURL = documentsURL.URLByAppendingPathComponent("mov.MOV")
+        let uuid = NSUUID().UUIDString
+        documentsURL = documentsURL.URLByAppendingPathComponent("\(uuid).MOV")
         var error:NSError?
         let folderExists = documentsURL.checkResourceIsReachableAndReturnError(&error)
         print(folderExists)
