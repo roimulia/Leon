@@ -57,6 +57,15 @@ class ViewController: UIViewController {
             
         }
         
+        // add audio track output
+        let originAudioTrack = asset.tracksWithMediaType(AVMediaTypeAudio)[0]
+        let audioTrack = composition.addMutableTrackWithMediaType(AVMediaTypeAudio, preferredTrackID: 2)
+        do {
+            try audioTrack.insertTimeRange(originAudioTrack.timeRange, ofTrack: originAudioTrack , atTime: kCMTimeZero)
+        } catch {
+            
+        }
+        
         let playerItem = AVPlayerItem(asset: composition)
         let videoComposition = AVMutableVideoComposition()
         videoComposition.customVideoCompositorClass = FilterCompositor.self
@@ -135,6 +144,15 @@ class ViewController: UIViewController {
         let timeRange = originalVideoTrack.timeRange
         do {
             try videoTrack.insertTimeRange(timeRange, ofTrack: originalVideoTrack, atTime: kCMTimeZero)
+        } catch {
+            
+        }
+        
+        // add audio track output
+        let originAudioTrack = asset.tracksWithMediaType(AVMediaTypeAudio)[0]
+        let audioTrack = composition.addMutableTrackWithMediaType(AVMediaTypeAudio, preferredTrackID: 2)
+        do {
+            try audioTrack.insertTimeRange(originAudioTrack.timeRange, ofTrack: originAudioTrack , atTime: kCMTimeZero)
         } catch {
             
         }
